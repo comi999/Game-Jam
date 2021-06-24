@@ -47,7 +47,7 @@ public class NodeScript : MonoBehaviour, IInteractable
 
     void OnMouseDown()
     {
-        SwapTrack();
+        //SwapTrack();
     }
 
     public void SwapTrack()
@@ -90,6 +90,7 @@ public class NodeScript : MonoBehaviour, IInteractable
 
     public void OnInteract(Interaction a_Interaction)
     {
+        SwapTrack();
         //SwapTrack();
     }
 

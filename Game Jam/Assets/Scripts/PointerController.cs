@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class PointerController : ISingleton< PointerController >, IInteractor
 
     public Vector2 ScreenPosition { get; private set; }
     public Vector3 WorldPosition { get; private set; }
+    public Vector3 RayCastPosition { get; private set; }
     public IInteractable HoveringOver { get; private set; }
 
     private void Update()
@@ -53,6 +55,8 @@ public class PointerController : ISingleton< PointerController >, IInteractor
                 interactable.OnHoverEnter( interaction );
                 OnHoverStay( interaction );
             }
+
+            RayCastPosition = hit.point;
         }
         else if ( HoveringOver != null )
         {
