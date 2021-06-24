@@ -13,6 +13,7 @@ public class PointerController : MonoBehaviour, IInteractor
     {
         ScreenPosition = Input.mousePosition;
         WorldPosition = Camera.main.ScreenToWorldPoint( Input.mousePosition );
+        gameObject.transform.position = WorldPosition;
 
         Ray ray = Camera.main.ScreenPointToRay( ScreenPosition );
         Physics.Raycast( ray, out RaycastHit hit );
