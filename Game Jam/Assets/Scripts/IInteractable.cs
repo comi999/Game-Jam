@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    void OnInteract( Interaction a_Interaction );
-    void OnUninteract( Interaction a_Interaction );
+    void OnInteract( IInteractor a_Interactor );
+    void OnUninteract( IInteractor a_Interactor );
 }
