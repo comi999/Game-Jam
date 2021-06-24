@@ -20,7 +20,7 @@ public class SoundController : ISingleton< SoundController >
         }
         else if ( foundPool )
         {
-            AudioSource newSource = ( new GameObject( "AudioSource", typeof( AudioSource ) ) ).GetComponent< AudioSource >();
+            AudioSource newSource = ( new GameObject( "AudioSource-" + a_Name, typeof( AudioSource ) ) ).GetComponent< AudioSource >();
             AudioSources.Add( a_Name, newSource );
 
             newSource.clip = pool.Random;
@@ -31,6 +31,11 @@ public class SoundController : ISingleton< SoundController >
 
     public void Stop( string a_Name )
     {
-        
+        if ( AudioSources.TryGetValue( a_Name, out AudioSource source ) )
+        {
+            source.Stop();
+            Destroy( source.gameObject );
+            AudioSources.Remove( a_Name );
+        }
     }
 }
