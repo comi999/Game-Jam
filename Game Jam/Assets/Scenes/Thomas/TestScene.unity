@@ -570,11 +570,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 904267312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2578a33b107e4a64cb0e1e3cd3127fcb, type: 3}
+  m_Script: {fileID: 11500000, guid: 04ccf786518d6b943841c97f941d70bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointerController: {fileID: 904267313}
-  Interact: 0
+  endNodes:
+  - {fileID: 377947174}
+  - {fileID: 214469988}
+  - {fileID: 972343}
+  trainPrefabs:
+  - {fileID: 2145285718}
+  OnTrainCrash:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTrainReachedEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
