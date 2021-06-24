@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundController : ISingleton< SoundController >
 {
-    Dictionary< string, AudioSource > AudioSources = new Dictionary<string, AudioSource>();
+    Dictionary< string, AudioSource > AudioSources = new Dictionary< string, AudioSource >();
 
     public void Play( string a_Name, bool a_Repeat )
     {

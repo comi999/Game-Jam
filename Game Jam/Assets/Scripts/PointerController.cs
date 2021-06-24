@@ -18,9 +18,15 @@ public class PointerController : ISingleton< PointerController >, IInteractor
     public Vector3 WorldPosition { get; private set; }
     public Vector3 RayCastPosition { get; private set; }
     public IInteractable HoveringOver { get; private set; }
+    public bool IsActive { get; set; }
 
     private void Update()
     {
+        if ( !IsActive )
+        {
+            return;
+        }
+
         ScreenPosition = Input.mousePosition;
         WorldPosition = Camera.main.ScreenToWorldPoint( Input.mousePosition );
         gameObject.transform.position = WorldPosition;

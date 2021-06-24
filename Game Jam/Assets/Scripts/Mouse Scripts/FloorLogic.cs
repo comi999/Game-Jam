@@ -2,7 +2,7 @@
 
 public class FloorLogic : MonoBehaviour, IInteractable
 {
-    [SerializeField] ParticleSystem PS;  
+    [SerializeField] ParticleSystem PS = null;  
     public void OnHoverEnter(Interaction a_Interaction)
     {
         
