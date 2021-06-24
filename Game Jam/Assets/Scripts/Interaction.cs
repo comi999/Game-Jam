@@ -10,6 +10,6 @@ public class Interaction
         m_Interactable = a_Interactable;
     }
 
-    IInteractor m_Interactor;
-    IInteractable m_Interactable;
+    public IInteractor m_Interactor;
+    public IInteractable m_Interactable;
 }
