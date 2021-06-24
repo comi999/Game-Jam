@@ -39,11 +39,18 @@ public class UIController : ISingleton< UIController >
         }
 
         // Temporary to test score screen.
-        if ( Input.GetKeyDown( KeyCode.Space ) && !IsMainMenuLoaded && !IsPauseMenuLoaded && !IsScoreMenuLoaded )
-        {
-            SceneManager.LoadSceneAsync( ScoreMenu, LoadSceneMode.Additive ).completed += a => IsScoreMenuLoaded = true;
-        }
+        //if ( Input.GetKeyDown( KeyCode.Space ) && !IsMainMenuLoaded && !IsPauseMenuLoaded && !IsScoreMenuLoaded )
+        //{
+        //    SceneManager.LoadSceneAsync( ScoreMenu, LoadSceneMode.Additive ).completed += a => IsScoreMenuLoaded = true;
+        //}
     }
+
+    // Called by TrainManager when two trains collide
+    public void LoadScoreMenu()
+    {
+        SceneManager.LoadSceneAsync(ScoreMenu, LoadSceneMode.Additive).completed += a => IsScoreMenuLoaded = true;
+    }
+
 
     public void MainMenu_OnPlay()
     {

@@ -5,10 +5,16 @@ using UnityEngine.Events;
 
 public class SwitchTrackScript : MonoBehaviour, IInteractable
 {
-    [Tooltip("The node this track is next of")]
-    public NodeScript previousNode;
-    [Tooltip("The node this track is previous of")]
-    public NodeScript nextNode;
+    [System.Serializable]
+    public struct ConnectedNode
+    {
+        public NodeScript node;
+        [Tooltip("Is this switch track next of the node?")]
+        public bool isNext;
+    }
+
+    public ConnectedNode node1;
+    public ConnectedNode node2;
 
     public float spinAngle = 30;
 
@@ -23,17 +29,17 @@ public class SwitchTrackScript : MonoBehaviour, IInteractable
     void Start()
     {
         // Set the swapable on each node
-        previousNode.swapNext = true;
-        previousNode.swapable = nextNode;
-        nextNode.swapNext = false;
-        nextNode.swapable = previousNode;
+        node1.node.swapNext = node1.isNext;
+        node1.node.swapable = node2.node;
+        node2.node.swapNext = node2.isNext;
+        node2.node.swapable = node1.node;
     }
 
     public void OnInteract(Interaction a_Interaction)
     {
         // Swap the tracks
-        previousNode.SwapTrack();
-        nextNode.SwapTrack();
+        node1.node.SwapTrack();
+        node2.node.SwapTrack();
 
         // Toggle flag
         isActive = !isActive;
@@ -45,6 +51,8 @@ public class SwitchTrackScript : MonoBehaviour, IInteractable
         }
         rotateRoutine = StartCoroutine(Rotate(isActive));
 
+        // Play audio
+        SoundController.Instance.Play("Track Switches", false);
 
         onTrackSwapped.Invoke();
     }

@@ -72,7 +72,7 @@ public class TrainLogic : MonoBehaviour
         
         //update train pos and rot
         transform.position = (frontPos + backPos) * 0.5f;
-        transform.up = backPos - frontPos;
+        transform.forward = backPos - frontPos;
     }
 
     void OnCollisionEnter(Collision collision)

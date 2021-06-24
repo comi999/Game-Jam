@@ -8,8 +8,7 @@ public class TrainManager : ISingleton<TrainManager>
     // Contains all TrainLogic instances
     private ArrayList trains;
 
-    [Tooltip("The nodes that are the end of a track")]
-    public NodeScript[] endNodes;
+    private ArrayList endNodes;
 
     public GameObject[] trainPrefabs;
 
@@ -26,6 +25,17 @@ public class TrainManager : ISingleton<TrainManager>
     void Start()
     {
         trains = new ArrayList();
+        endNodes = new ArrayList();
+
+        // Search through all node scripts to find end nodes
+        foreach (var itter in FindObjectsOfType<NodeScript>())
+        {
+            if ((itter.next == null) !=/*XOR*/ (itter.previous == null))
+            {
+                endNodes.Add(itter);
+            }
+        }
+
 
         if (isDemoMode)
         {
@@ -42,12 +52,15 @@ public class TrainManager : ISingleton<TrainManager>
         trains.Add(newTrain);
 
         // Get random end node
-        int nodeI = Random.Range(0, endNodes.Length);
-        NodeScript node = endNodes[nodeI];
+        int nodeI = Random.Range(0, endNodes.Count);
+        NodeScript node = endNodes[nodeI] as NodeScript;
 
         // Setup train
         newTrain.previous = node;
         newTrain.next = (node.next == null) ? node.previous : node.next;
+
+        // Play sound effect
+        SoundController.Instance.Play("Train Spawns", false);
     }
 
     // Called when a train crashes into another train
@@ -59,7 +72,9 @@ public class TrainManager : ISingleton<TrainManager>
             it.enabled = false;
         }
 
-        //show game over menu
+        // Show game over menu and play sound effect
+        UIController.Instance.LoadScoreMenu();
+        SoundController.Instance.Play("Train Crashs", false);
 
         OnTrainCrash.Invoke();
     }
@@ -74,6 +89,12 @@ public class TrainManager : ISingleton<TrainManager>
         if (isDemoMode)
         {
             CreateRandomTrain();
+        }
+        // In play mode, give the player score
+        else
+        {
+            UIController.Instance.Score += 50;
+            SoundController.Instance.Play("Points Gained", false);
         }
 
         OnTrainReachedEnd.Invoke();
