@@ -95,16 +95,17 @@ public class TrainLogic : MonoBehaviour
 
 
         backPrevious = previous;
-
         previous = next;
-        // The next node depends on the direction we are traveling
-        if (next.next == backPrevious)
+
+        // If we were on a disabled track
+        if (next.swapable != null & next.swapable == backPrevious)
         {
-            next = next.previous;
+            next = (next.swapNext) ? next.previous : next.next;
         }
         else
         {
-            next = next.next;
+            // The next node depends on the direction we are traveling
+            next = (next.next == backPrevious) ? next.previous : next.next;
         }
         
 

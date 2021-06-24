@@ -18,12 +18,15 @@ public class TrainManager : ISingleton<TrainManager>
     public UnityEvent OnTrainReachedEnd;
 
 
+    [Tooltip("Demo mode is used for the main menu")]
+    public bool isDemoMode = false;
+
+
 
     void Start()
     {
         trains = new ArrayList();
     }
-
 
     public void CreateRandomTrain()
     {
@@ -61,6 +64,12 @@ public class TrainManager : ISingleton<TrainManager>
         // Remove the train
         trains.Remove(train);
         Destroy(train.gameObject);
+
+        // In demo mode, spawn a new train every time one reaches the end
+        if (isDemoMode)
+        {
+            CreateRandomTrain();
+        }
 
         OnTrainReachedEnd.Invoke();
     }
