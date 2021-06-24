@@ -34,7 +34,7 @@ public class PointerController : ISingleton< PointerController >, IInteractor
         Ray ray = Camera.main.ScreenPointToRay( ScreenPosition );
         IInteractable interactable = null;
         Interaction interaction = null;
-        bool foundInteractable = Physics.Raycast( ray.origin, ray.direction, out RaycastHit hit, 10, InteractableLayer, QueryTriggerInteraction.Collide ) ? ( 
+        bool foundInteractable = Physics.Raycast( ray.origin, ray.direction, out RaycastHit hit, 10000, InteractableLayer, QueryTriggerInteraction.Collide ) ? ( 
             hit.collider.gameObject.TryGetComponent( out interactable ) ? true : false ) : false;
 
         if ( foundInteractable )

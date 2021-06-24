@@ -26,6 +26,11 @@ public class TrainManager : ISingleton<TrainManager>
     void Start()
     {
         trains = new ArrayList();
+
+        if (isDemoMode)
+        {
+            CreateRandomTrain();
+        }
     }
 
     public void CreateRandomTrain()
