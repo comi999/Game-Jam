@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,7 +24,7 @@ public class UIController : ISingleton< UIController >
 
     private void Update()
     {
-        if ( Input.GetKeyDown( PauseMenuKey ) )
+        if ( Input.GetKeyDown( PauseMenuKey ) && !IsMainMenuLoaded && !IsScoreMenuLoaded )
         {
             if ( IsPauseMenuLoaded )
             {
@@ -36,6 +37,12 @@ public class UIController : ISingleton< UIController >
                 PointerController.Instance.IsActive = false;
             }
         }
+
+        // Temporary to test score screen.
+        if ( Input.GetKeyDown( KeyCode.Space ) && !IsMainMenuLoaded && !IsPauseMenuLoaded && !IsScoreMenuLoaded )
+        {
+            SceneManager.LoadSceneAsync( ScoreMenu, LoadSceneMode.Additive ).completed += a => IsScoreMenuLoaded = true;
+        }
     }
 
     public void MainMenu_OnPlay()
@@ -46,7 +53,11 @@ public class UIController : ISingleton< UIController >
 
     public void MainMenu_OnExit()
     {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
         Application.Quit();
+        #endif
     }
 
     public void PauseMenu_OnResume()
@@ -64,17 +75,25 @@ public class UIController : ISingleton< UIController >
 
     public void PauseMenu_OnExit()
     {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
         Application.Quit();
+        #endif
     }
 
     public void ScoreMenu_OnQuit()
     {
-        SceneManager.UnloadSceneAsync( Score ).completed += a => IsScoreMenuLoaded = false;
-        SceneManager.LoadSceneAsync( MainMenu ).completed += a => IsMainMenuLoaded = true;
+        SceneManager.UnloadSceneAsync( ScoreMenu ).completed += a => IsScoreMenuLoaded = false;
+        SceneManager.LoadSceneAsync( MainMenu, LoadSceneMode.Additive ).completed += a => IsMainMenuLoaded = true;
     }
 
     public void ScoreMenu_OnExit()
     {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
         Application.Quit();
+        #endif
     }
 }
