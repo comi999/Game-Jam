@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrainController : MonoBehaviour
+public class TrainLogic : MonoBehaviour
 {
     public NodeScript next;
     public NodeScript previous;
@@ -14,8 +14,8 @@ public class TrainController : MonoBehaviour
     public float pointDistance = 1f;
 
 
-    private float frontDistance = 0.7f;
-    private float backDistance = 0.3f;
+    private float frontDistance;
+    private float backDistance;
 
     // The real distance of the current track previous to next
     float trackDistance;
@@ -30,15 +30,6 @@ public class TrainController : MonoBehaviour
 
         backDistance = 0;
         frontDistance = (speed / trackDistance) * pointDistance;
-    }
-
-    void OnEnable()
-    {
-        // Make sure there are nodes to travel between
-        if (next == null || previous == null)
-        {
-            this.enabled = false;
-        }
     }
 
     void Update()
@@ -84,8 +75,25 @@ public class TrainController : MonoBehaviour
         transform.up = backPos - frontPos;
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        // If collided with a train, tell the manager
+        if (collision.gameObject.CompareTag("Train"))
+        {
+            TrainManager.Instance.TrainCrash();
+        }
+    }
+
     private void ChangeTrack()
     {
+        // If the next node is missing a node, it is an end node
+        if (next.next == null || next.previous == null)
+        {
+            TrainManager.Instance.TrainReachedEnd(this);
+            return;
+        }
+
+
         backPrevious = previous;
 
         previous = next;
