@@ -4,6 +4,9 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    void OnInteract( IInteractor a_Interactor );
-    void OnUninteract( IInteractor a_Interactor );
+    void OnHoverEnter( Interaction a_Interaction );
+    void OnHoverStay( Interaction a_Interaction );
+    void OnHoverExit( Interaction a_Interaction );
+    void OnInteract( Interaction a_Interaction );
+    void OnUninteract( Interaction a_Interaction );
 }

@@ -4,21 +4,12 @@ using UnityEngine;
 
 public class InteractionController : ISingleton< InteractionController >
 {
-    private void Awake()
+    public enum MouseButton
     {
-        m_MainCamera = Camera.main;
+        LeftClick,
+        RightClick
     }
 
-    private void Update()
-    {
-        Ray ray = m_MainCamera.ScreenPointToRay( Input.mousePosition );
-        Physics.Raycast( ray, out RaycastHit hit );
-
-        if ( hit.collider.gameObject.TryGetComponent( out IInteractable interactable ) )
-        {
-            interactable.OnInteract( new Interaction( default, interactable ) );
-        }
-    }
-
-    private Camera m_MainCamera;
+    public PointerController PointerController;
+    public MouseButton Interact;
 }
