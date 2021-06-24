@@ -3,7 +3,7 @@
 /// <summary>
 /// 
 /// </summary>
-public class GameStateController : MonoBehaviour
+public class GameStateController : ISingleton< GameStateController >
 {
 
 #region Public Fields, Statics, & Constants
