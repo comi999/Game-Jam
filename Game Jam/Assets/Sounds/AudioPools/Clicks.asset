@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c578e18f672acca4aa0fb3269eeb857d, type: 3}
+  m_Name: Clicks
+  m_EditorClassIdentifier: 
+  m_Items:
+  - {fileID: 8300000, guid: 6b1606567adba6a47beedbee59ceb4ea, type: 3}
+  - {fileID: 8300000, guid: 22e2a95b18ea59d4798b0a8a5f60a8d1, type: 3}
+  - {fileID: 8300000, guid: 0650ef7fb2c428c4d98d49371b65c7bf, type: 3}
+  - {fileID: 8300000, guid: 6d95a37250b82924ab199ae8f3e46f97, type: 3}
+  - {fileID: 8300000, guid: 551a34481b4e8304690d531669166abe, type: 3}
