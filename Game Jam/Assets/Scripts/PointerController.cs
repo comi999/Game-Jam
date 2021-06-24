@@ -16,10 +16,10 @@ public class PointerController : MonoBehaviour, IInteractor
         gameObject.transform.position = WorldPosition;
 
         Ray ray = Camera.main.ScreenPointToRay( ScreenPosition );
-        Physics.Raycast( ray, out RaycastHit hit );
-        bool foundInteractable = hit.collider.gameObject.TryGetComponent( out IInteractable interactable );
-
+        IInteractable interactable = null;
         Interaction interaction = null;
+        bool foundInteractable = Physics.Raycast( ray, out RaycastHit hit ) ? ( 
+            hit.collider.gameObject.TryGetComponent( out interactable ) ? true : false ) : false;
 
         if ( foundInteractable )
         {
