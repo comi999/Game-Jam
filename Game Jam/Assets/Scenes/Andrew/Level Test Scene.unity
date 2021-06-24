@@ -222,10 +222,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1598512735, guid: bf9acf21ca53d604a81e228575f0b27b, type: 3}
-      propertyPath: PS
-      value: 
-      objectReference: {fileID: 1638748031086930127, guid: 81e72d5ecb06bf0459c4b6a7b70da34c, type: 3}
     - target: {fileID: 5877283905916584434, guid: bf9acf21ca53d604a81e228575f0b27b, type: 3}
       propertyPath: m_Name
       value: CameraAndBacking
