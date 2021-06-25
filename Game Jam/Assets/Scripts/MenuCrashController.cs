@@ -33,13 +33,6 @@ public class MenuCrashController : ISingleton< MenuCrashController >
             m_CrashAmount += Time.deltaTime * 1500.0f;
             m_MeshRenderer.SetBlendShapeWeight( 0, m_CrashAmount );
 
-            Vector3 centre = m_MeshRenderer.bounds.center;
-            Vector3 extent = m_MeshRenderer.bounds.extents;
-
-            //spawnedTrain.transform.position += new Vector3( centre.x + extent.x, 0, 0 );
-
-            //spawnedTrain.transform.position = CrashPosition.position - new Vector3( extent.x, 0, 0 );
-
             yield return null;
         }
 
