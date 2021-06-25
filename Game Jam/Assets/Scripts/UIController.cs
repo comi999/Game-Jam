@@ -55,6 +55,7 @@ public class UIController : ISingleton< UIController >
     public void MainMenu_OnPlay()
     {
         SceneManager.UnloadSceneAsync( MainMenu ).completed += a => IsMainMenuLoaded = false;
+        MenuCrashController.Instance.TriggerCrash();
         PointerController.Instance.IsActive = true;
     }
 
