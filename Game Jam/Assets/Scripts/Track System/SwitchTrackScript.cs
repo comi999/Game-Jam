@@ -27,6 +27,8 @@ public class SwitchTrackScript : MonoBehaviour, IInteractable
 
     private Quaternion initRot;
 
+    public GameObject particleEffect;
+
 
 
     void Start()
@@ -58,6 +60,9 @@ public class SwitchTrackScript : MonoBehaviour, IInteractable
 
         // Play audio
         SoundController.Instance.Play("Track Switches", false);
+        // Create particle effect
+        Destroy( Instantiate(particleEffect, transform.position, Quaternion.Euler(-90, 0, 0)), 1);
+
 
         onTrackSwapped.Invoke();
     }

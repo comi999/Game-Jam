@@ -134,7 +134,7 @@ public class TrainManager : ISingleton<TrainManager>
         SoundController.Instance.Play("Train Crashs", false);
 
         // Create explosion effect for 3 seconds
-        Destroy( Instantiate(explosionPrefab, collisionPoint, Quaternion.identity), 2);
+        Destroy( Instantiate(explosionPrefab, collisionPoint, Quaternion.identity), explosionPrefab.GetComponent<ParticleSystem>().main.duration);
 
         isDemoMode = true;
 
