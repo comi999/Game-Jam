@@ -7,7 +7,6 @@ public class TrainManager : ISingleton<TrainManager>
 {
     // Contains all TrainLogic instances
     private ArrayList trains;
-
     private ArrayList endNodes;
 
     public GameObject[] trainPrefabs;
@@ -19,6 +18,12 @@ public class TrainManager : ISingleton<TrainManager>
 
     [Tooltip("Demo mode is used for the main menu")]
     public bool isDemoMode = false;
+
+    [Space]
+    public int maxTrainCount = 5;
+    public float spawnTime = 1f;
+
+    private float spawnTimmer = 0;
 
 
 
@@ -43,11 +48,31 @@ public class TrainManager : ISingleton<TrainManager>
         }
     }
 
+    void Update()
+    {
+        // Only run if in play mode
+        if (isDemoMode)
+        {
+            return;
+        }
+
+        // Dont do anything if there are too many trains
+        if (trains.Count >= maxTrainCount)
+        {
+            return;
+        }
+
+
+        spawnTimmer += Time.deltaTime;
+        if (spawnTimmer >= spawnTime)
+        {
+            spawnTimmer = 0;
+            CreateRandomTrain();
+        }
+    }
+
     public void CreateRandomTrain()
     {
-        // Temp for testing
-        PointerController.Instance.IsActive = true;
-
         // create a random train prefab
         int trainI = Random.Range(0, trainPrefabs.Length);
         GameObject obj = Instantiate(trainPrefabs[trainI], Vector3.zero, Quaternion.identity);
