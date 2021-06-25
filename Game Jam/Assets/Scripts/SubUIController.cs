@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SubUIController : MonoBehaviour
 {
@@ -11,4 +12,6 @@ public class SubUIController : MonoBehaviour
     public void PauseMenu_OnExit() => UIController.Instance.PauseMenu_OnExit();
     public void ScoreMenu_OnQuit() => UIController.Instance.ScoreMenu_OnQuit();
     public void ScoreMenu_OnExit() => UIController.Instance.ScoreMenu_OnExit();
+
+    
 }
