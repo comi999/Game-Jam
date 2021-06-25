@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076263465056832876}
   m_LocalRotation: {x: -0.00022575555, y: 0.9947315, z: -0.10251475, w: -0.000023265851}
-  m_LocalPosition: {x: -0.03, y: 0.4, z: 0.12}
+  m_LocalPosition: {x: -0.03, y: 0.4, z: -0.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5250072310447261717}
@@ -101,9 +101,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5250072310447261717}
+  - component: {fileID: 3098201990612569413}
   m_Layer: 0
   m_Name: Train Container
-  m_TagString: Untagged
+  m_TagString: Train
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +126,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3098201990612569413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3485218079274986713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efce938425fff004aabef5bd0cb9be84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next: {fileID: 0}
+  previous: {fileID: 0}
+  backPrevious: {fileID: 0}
+  speed: 0.75
+  pointDistance: 0.5
+  frontDistance: 0
+  backDistance: 0
+  trackDistance: 0
+  backTrackDistance: 0
 --- !u!1001 &4411183696271984022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4431048877741217459, guid: 0d5927577d2ecef4c86e1ebda2c70e3c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.27
+      value: 0.631
       objectReference: {fileID: 0}
     - target: {fileID: 4431048877741217459, guid: 0d5927577d2ecef4c86e1ebda2c70e3c, type: 3}
       propertyPath: m_LocalRotation.x
@@ -208,7 +230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 694847fbe2e344e42aea7c815456685b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.63899994
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 694847fbe2e344e42aea7c815456685b, type: 3}
       propertyPath: m_LocalRotation.x

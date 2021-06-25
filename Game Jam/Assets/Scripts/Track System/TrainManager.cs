@@ -45,6 +45,9 @@ public class TrainManager : ISingleton<TrainManager>
 
     public void CreateRandomTrain()
     {
+        // Temp for testing
+        PointerController.Instance.IsActive = true;
+
         // create a random train prefab
         int trainI = Random.Range(0, trainPrefabs.Length);
         GameObject obj = Instantiate(trainPrefabs[trainI], Vector3.zero, Quaternion.identity);

@@ -8,7 +8,7 @@ public class TrainLogic : MonoBehaviour
     public NodeScript previous;
 
     // Holds the previous node for the back point when front and back are on different tracks
-    private NodeScript backPrevious;
+    private  NodeScript backPrevious;
 
     public float speed = 1f;
     public float pointDistance = 1f;
@@ -18,9 +18,9 @@ public class TrainLogic : MonoBehaviour
     private float backDistance;
 
     // The real distance of the current track previous to next
-    float trackDistance;
+    private float trackDistance;
     // The distance of the track the back point is on (if applicable)
-    float backTrackDistance = 0;
+    private float backTrackDistance = 0;
 
 
 
@@ -107,7 +107,6 @@ public class TrainLogic : MonoBehaviour
             // The next node depends on the direction we are traveling
             next = (next.next == backPrevious) ? next.previous : next.next;
         }
-        
 
         // Update track distances
         backTrackDistance = trackDistance;

@@ -17,6 +17,7 @@ public class SwitchTrackScript : MonoBehaviour, IInteractable
     public ConnectedNode node2;
 
     public float spinAngle = 30;
+    public float spinTime = 0.5f;
 
     public UnityEvent onTrackSwapped;
 
@@ -24,10 +25,14 @@ public class SwitchTrackScript : MonoBehaviour, IInteractable
     private Coroutine rotateRoutine;
     private bool isActive = false;
 
-    
+    private Quaternion initRot;
+
+
 
     void Start()
     {
+        initRot = transform.rotation;
+
         // Set the swapable on each node
         node1.node.swapNext = node1.isNext;
         node1.node.swapable = node2.node;
@@ -60,12 +65,12 @@ public class SwitchTrackScript : MonoBehaviour, IInteractable
     private IEnumerator Rotate(bool spinPositive)
     {
         Quaternion start = transform.rotation;
-        Quaternion end = start * Quaternion.Euler(0, spinPositive ? spinAngle : -spinAngle, 0);
+        Quaternion end = initRot * Quaternion.Euler(0, spinPositive ? spinAngle : 0, 0);
 
         float t = 0;
-        while (t < 1)
+        while (t < spinTime)
         {
-            transform.rotation = Quaternion.Slerp(start, end, t);
+            transform.rotation = Quaternion.Slerp(start, end, t / spinTime);
 
             t += Time.deltaTime;
             yield return null;

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4854897139913646538}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrackContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4702538790032877768}
   - component: {fileID: 4851646236085581567}
-  m_Layer: 0
+  - component: {fileID: -1361571049077480201}
+  - component: {fileID: 5773043504446563250}
+  m_Layer: 8
   m_Name: Track Switch Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,12 +78,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f380ac1769ea24199537fe7398c37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previousNode: {fileID: 0}
-  nextNode: {fileID: 0}
-  spinAngle: 30
+  node1:
+    node: {fileID: 0}
+    isNext: 0
+  node2:
+    node: {fileID: 0}
+    isNext: 0
+  spinAngle: 90
+  spinTime: 0.2
   onTrackSwapped:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &-1361571049077480201
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901550840088382328}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!54 &5773043504446563250
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901550840088382328}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1001 &5158505998178790720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -148,6 +184,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fe7e6d390e6a5a642874f35a599c17d0, type: 3}
       propertyPath: m_Name
       value: SM_TrackMerge (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fe7e6d390e6a5a642874f35a599c17d0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe7e6d390e6a5a642874f35a599c17d0, type: 3}
@@ -222,6 +262,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fe7e6d390e6a5a642874f35a599c17d0, type: 3}
       propertyPath: m_Name
       value: SM_TrackMerge
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fe7e6d390e6a5a642874f35a599c17d0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe7e6d390e6a5a642874f35a599c17d0, type: 3}
