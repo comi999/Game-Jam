@@ -25,6 +25,11 @@ public class UIController : ISingleton< UIController >
         SceneManager.LoadSceneAsync( MainMenu, LoadSceneMode.Additive ).completed += a => IsMainMenuLoaded = true;
     }
 
+    private void Start()
+    {
+        SoundController.Instance.Play( "BackgroundMusic", true );
+    }
+
     private void Update()
     {
         if ( Input.GetKeyDown( PauseMenuKey ) && !IsMainMenuLoaded && !IsScoreMenuLoaded )
@@ -40,12 +45,6 @@ public class UIController : ISingleton< UIController >
                 PointerController.Instance.IsActive = false;
             }
         }
-
-        // Temporary to test score screen.
-        //if ( Input.GetKeyDown( KeyCode.Space ) && !IsMainMenuLoaded && !IsPauseMenuLoaded && !IsScoreMenuLoaded )
-        //{
-        //    SceneManager.LoadSceneAsync( ScoreMenu, LoadSceneMode.Additive ).completed += a => IsScoreMenuLoaded = true;
-        //}
     }
 
     // Called by TrainManager when two trains collide
@@ -55,17 +54,17 @@ public class UIController : ISingleton< UIController >
         {
             SceneManager.LoadSceneAsync(ScoreMenu, LoadSceneMode.Additive).completed += a => IsScoreMenuLoaded = true;
             PointerController.Instance.IsActive = false;
-            Score = 0;
         }
     }
 
 
     public void MainMenu_OnPlay()
     {
+        Score = 0;
         SceneManager.UnloadSceneAsync( MainMenu ).completed += a => IsMainMenuLoaded = false;
         MenuCrashController.Instance.TriggerCrash();
         PointerController.Instance.IsActive = true;
-
+        SoundController.Instance.Play( "BackgroundMusic", true );
         TrainManager.Instance.isDemoMode = false;
     }
 

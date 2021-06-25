@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 7101442135079938778}
   - component: {fileID: 7101442135079938779}
   - component: {fileID: 7823221461447510244}
+  - component: {fileID: 8917825282563399749}
   m_Layer: 5
   m_Name: ScoreMenuCanvas
   m_TagString: Untagged
@@ -531,3 +532,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3da84dea92ffb41ae875b17d46155e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8917825282563399749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7101442135079938776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a5415aa6f1e724bbd6f2df154deccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreText: {fileID: 8993011897269808417}

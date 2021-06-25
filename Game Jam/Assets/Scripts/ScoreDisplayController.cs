@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ScoreDisplayController : MonoBehaviour
 {
     public Text ScoreText;
+    public Sprite Background;
 
     private void Start()
     {

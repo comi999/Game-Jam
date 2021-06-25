@@ -18,6 +18,7 @@ public class SoundController : ISingleton< SoundController >
             source.loop = a_Repeat;
             source.Play();
         }
+
         else if ( foundPool )
         {
             AudioSource newSource = ( new GameObject( "AudioSource-" + a_Name, typeof( AudioSource ) ) ).GetComponent< AudioSource >();
