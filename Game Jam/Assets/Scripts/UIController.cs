@@ -54,6 +54,8 @@ public class UIController : ISingleton< UIController >
         if ( !IsMainMenuLoaded && !IsPauseMenuLoaded )
         {
             SceneManager.LoadSceneAsync(ScoreMenu, LoadSceneMode.Additive).completed += a => IsScoreMenuLoaded = true;
+            PointerController.Instance.IsActive = false;
+            Score = 0;
         }
     }
 
@@ -63,6 +65,8 @@ public class UIController : ISingleton< UIController >
         SceneManager.UnloadSceneAsync( MainMenu ).completed += a => IsMainMenuLoaded = false;
         MenuCrashController.Instance.TriggerCrash();
         PointerController.Instance.IsActive = true;
+
+        TrainManager.Instance.isDemoMode = false;
     }
 
     public void MainMenu_OnExit()
@@ -78,6 +82,8 @@ public class UIController : ISingleton< UIController >
     {
         SceneManager.UnloadSceneAsync( PauseMenu ).completed += a => IsPauseMenuLoaded = false;
         PointerController.Instance.IsActive = true;
+
+        Time.timeScale = 1;
     }
 
     public void PauseMenu_OnQuit()
@@ -85,6 +91,8 @@ public class UIController : ISingleton< UIController >
         SceneManager.UnloadSceneAsync( PauseMenu ).completed += a => IsPauseMenuLoaded = false;
         SceneManager.LoadSceneAsync( MainMenu, LoadSceneMode.Additive ).completed += a => IsMainMenuLoaded = true;
         PointerController.Instance.IsActive = false;
+
+        Time.timeScale = 0;
     }
 
     public void PauseMenu_OnExit()
@@ -100,6 +108,8 @@ public class UIController : ISingleton< UIController >
     {
         SceneManager.UnloadSceneAsync( ScoreMenu ).completed += a => IsScoreMenuLoaded = false;
         SceneManager.LoadSceneAsync( MainMenu, LoadSceneMode.Additive ).completed += a => IsMainMenuLoaded = true;
+
+        TrainManager.Instance.ResetManager();
     }
 
     public void ScoreMenu_OnExit()

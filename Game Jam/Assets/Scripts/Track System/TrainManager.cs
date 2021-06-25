@@ -21,7 +21,8 @@ public class TrainManager : ISingleton<TrainManager>
 
     [Space]
     public int maxTrainCount = 5;
-    public float spawnTime = 1f;
+    public float minDistanceFromOtherTrains = 5;
+    public float spawnTime = 2f;
 
     private float spawnTimmer = 0;
 
@@ -73,15 +74,25 @@ public class TrainManager : ISingleton<TrainManager>
 
     public void CreateRandomTrain()
     {
-        // create a random train prefab
+        // Get random end node
+        int nodeI = Random.Range(0, endNodes.Count);
+        NodeScript node = endNodes[nodeI] as NodeScript;
+
+        // If there are any trains in range of the node, do nothing
+        foreach (TrainLogic train in trains)
+        {
+            if (Vector3.Distance(train.transform.position, node.transform.position) < minDistanceFromOtherTrains)
+            {
+                return;
+            }
+        }
+
+
+        // Create a random train prefab
         int trainI = Random.Range(0, trainPrefabs.Length);
         GameObject obj = Instantiate(trainPrefabs[trainI], Vector3.zero, Quaternion.identity);
         TrainLogic newTrain = obj.GetComponent<TrainLogic>();
         trains.Add(newTrain);
-
-        // Get random end node
-        int nodeI = Random.Range(0, endNodes.Count);
-        NodeScript node = endNodes[nodeI] as NodeScript;
 
         // Setup train
         newTrain.previous = node;
@@ -91,9 +102,25 @@ public class TrainManager : ISingleton<TrainManager>
         SoundController.Instance.Play("Train Spawns", false);
     }
 
+    public void ResetManager()
+    {
+        // Destroy all trains and return to demo mode
+        while (trains.Count > 0)
+        {
+            Destroy((trains[0] as TrainLogic).gameObject);
+            trains.RemoveAt(0);
+        }
+
+        isDemoMode = true;
+        CreateRandomTrain();
+    }
+
     // Called when a train crashes into another train
     public void TrainCrash()
     {
+        if (isDemoMode)
+            return;
+
         //stop all trains
         foreach (TrainLogic it in trains)
         {
@@ -103,6 +130,8 @@ public class TrainManager : ISingleton<TrainManager>
         // Show game over menu and play sound effect
         UIController.Instance.LoadScoreMenu();
         SoundController.Instance.Play("Train Crashs", false);
+
+        isDemoMode = true;
 
         OnTrainCrash.Invoke();
     }
