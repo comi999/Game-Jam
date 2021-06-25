@@ -61,7 +61,7 @@ public class SwitchTrackScript : MonoBehaviour, IInteractable
         // Play audio
         SoundController.Instance.Play("Track Switches", false);
         // Create particle effect
-        Destroy( Instantiate(particleEffect, transform.position, Quaternion.Euler(-90, 0, 0)), 1);
+        Destroy( Instantiate(particleEffect, transform.position, transform.rotation * Quaternion.Euler(-90, 0, 0), transform), 1);
 
 
         onTrackSwapped.Invoke();
@@ -80,6 +80,8 @@ public class SwitchTrackScript : MonoBehaviour, IInteractable
             t += Time.deltaTime;
             yield return null;
         }
+
+        transform.rotation = end;
     }
 
 
