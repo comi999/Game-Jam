@@ -24,20 +24,22 @@ public class MenuCrashController : ISingleton< MenuCrashController >
 
         while ( spawnedTrain.transform.position.x < CrashPosition.position.x )
         {
-            spawnedTrain.transform.position += new Vector3( Time.deltaTime * 16.0f, 0, 0 );
+            spawnedTrain.transform.position += new Vector3( Time.deltaTime * 30.0f, 0, 0 );
             yield return null;
         }
 
         while ( m_CrashAmount < 100.0f )
         {
-            m_CrashAmount += Time.deltaTime * 500.0f;
+            m_CrashAmount += Time.deltaTime * 1500.0f;
             m_MeshRenderer.SetBlendShapeWeight( 0, m_CrashAmount );
 
             Vector3 centre = m_MeshRenderer.bounds.center;
             Vector3 extent = m_MeshRenderer.bounds.extents;
 
-            //spawnedTrain.transform.position -= new Vector3( centre.x, 0, 0 );
-            spawnedTrain.transform.position += new Vector3( extent.x - centre.x + 0.2f, 0, 0 );
+            //spawnedTrain.transform.position += new Vector3( centre.x + extent.x, 0, 0 );
+
+            //spawnedTrain.transform.position = CrashPosition.position - new Vector3( extent.x, 0, 0 );
+
             yield return null;
         }
 
