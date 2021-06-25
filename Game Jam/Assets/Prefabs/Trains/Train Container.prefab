@@ -140,13 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 0}
   previous: {fileID: 0}
-  backPrevious: {fileID: 0}
   speed: 0.75
-  pointDistance: 0.5
-  frontDistance: 0
-  backDistance: 0
-  trackDistance: 0
-  backTrackDistance: 0
+  pointDistance: 0.75
 --- !u!1001 &4411183696271984022
 PrefabInstance:
   m_ObjectHideFlags: 0
