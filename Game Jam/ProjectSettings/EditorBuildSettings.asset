@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Len/Level Test Scene 1.unity
     guid: 06472e405f2c8b643a8b1b95b616fbd7
   - enabled: 1
@@ -17,7 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Len/ScoreMenu.unity
     guid: ab0b7057ddd2f554f806a2c10b99112f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Len/TestScene.unity
     guid: d7a3d427bcd94d34db5f849033222c36
+  - enabled: 1
+    path: Assets/Scenes/Main Game Scene.unity
+    guid: 24f6c4ea93d50ad4eb1634b6600993a0
   m_configObjects: {}

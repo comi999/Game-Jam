@@ -9,7 +9,7 @@ public class SoundController : ISingleton< SoundController >
     public void Play( string a_Name, bool a_Repeat )
     {
         bool foundSource = AudioSources.TryGetValue( a_Name, out AudioSource source );
-        bool foundPool = AudioPool.TryGetPool( a_Name, out ResourcePool< AudioClip > pool );
+        bool foundPool = AudioPool.TryGetPool( a_Name, out AudioPool pool );
 
         if ( foundSource && foundPool )
         {

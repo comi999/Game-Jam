@@ -17,8 +17,11 @@ public class UIController : ISingleton< UIController >
     public bool IsScoreMenuLoaded { get; private set; }
     public int Score { get; set; }
 
+    public AudioPool[] AllAudioPools;
+
     private void Awake()
     {
+        AudioPool.PopulateRegistry( AllAudioPools );
         SceneManager.LoadSceneAsync( MainMenu, LoadSceneMode.Additive ).completed += a => IsMainMenuLoaded = true;
     }
 
@@ -48,7 +51,10 @@ public class UIController : ISingleton< UIController >
     // Called by TrainManager when two trains collide
     public void LoadScoreMenu()
     {
-        SceneManager.LoadSceneAsync(ScoreMenu, LoadSceneMode.Additive).completed += a => IsScoreMenuLoaded = true;
+        if ( !IsMainMenuLoaded && !IsPauseMenuLoaded )
+        {
+            SceneManager.LoadSceneAsync(ScoreMenu, LoadSceneMode.Additive).completed += a => IsScoreMenuLoaded = true;
+        }
     }
 
 
