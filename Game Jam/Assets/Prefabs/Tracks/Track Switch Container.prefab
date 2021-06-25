@@ -89,6 +89,7 @@ MonoBehaviour:
   onTrackSwapped:
     m_PersistentCalls:
       m_Calls: []
+  particleEffect: {fileID: 2344232918086523902, guid: 7e5394fbf7152b54c8ee5e66c69dfabf, type: 3}
 --- !u!65 &-1361571049077480201
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ public class TrainManager : ISingleton<TrainManager>
 
     public GameObject[] trainPrefabs;
 
+    public GameObject explosionPrefab;
+
 
     public UnityEvent OnTrainCrash;
     public UnityEvent OnTrainReachedEnd;
@@ -116,7 +118,7 @@ public class TrainManager : ISingleton<TrainManager>
     }
 
     // Called when a train crashes into another train
-    public void TrainCrash()
+    public void TrainCrash(Vector3 collisionPoint)
     {
         if (isDemoMode)
             return;
@@ -130,6 +132,9 @@ public class TrainManager : ISingleton<TrainManager>
         // Show game over menu and play sound effect
         UIController.Instance.LoadScoreMenu();
         SoundController.Instance.Play("Train Crashs", false);
+
+        // Create explosion effect for 3 seconds
+        Destroy( Instantiate(explosionPrefab, collisionPoint, Quaternion.identity), 2);
 
         isDemoMode = true;
 

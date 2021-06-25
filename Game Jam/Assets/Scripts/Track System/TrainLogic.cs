@@ -80,7 +80,7 @@ public class TrainLogic : MonoBehaviour
         // If collided with a train, tell the manager
         if (collision.gameObject.CompareTag("Train"))
         {
-            TrainManager.Instance.TrainCrash();
+            TrainManager.Instance.TrainCrash(collision.GetContact(0).point);
         }
     }
 
