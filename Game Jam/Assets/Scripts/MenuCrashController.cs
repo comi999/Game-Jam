@@ -19,6 +19,7 @@ public class MenuCrashController : ISingleton< MenuCrashController >
     private IEnumerator Crash()
     {
         GameObject spawnedTrain = Instantiate( TrainPrefab, SpawnPosition.position, SpawnPosition.rotation );
+        spawnedTrain.transform.localScale = SpawnPosition.localScale;
         m_MeshRenderer = spawnedTrain.GetComponentInChildren< SkinnedMeshRenderer >();
 
         while ( spawnedTrain.transform.position.x < CrashPosition.position.x )
